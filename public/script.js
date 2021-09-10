@@ -11,9 +11,9 @@ navigator.mediaDevices
     audio: true,
   })
   .then((stream) => {
-    myPeer = new Peer(undefined, {
-      host: "/",
+   host: "ancient-wave-08428.herokuapp.com",
       port: "443",
+      path:'/peerjs'
     });
     myVideoStream = stream;
     addVideoStream(myVideo, stream);
