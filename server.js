@@ -4,6 +4,7 @@ const server = require('http').Server(app);
 const {v4:uuidv4} = require('uuid'); // for getting unique id
 const io = require('socket.io')(server);
 const { ExpressPeerServer } = require('peer');
+const path = require('path');
 const peerServer = ExpressPeerServer(server, {
   debug: true
 });
@@ -20,6 +21,16 @@ app.get('/',(req,res)=>{
 app.get('/:room',(req,res)=>{
     res.render('room',{roomId:req.params.room})
 })
+
+app.use(express.static(path.join(__dirname, 'client/build')));
+
+if(process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, 'client/build')));
+  //
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname,'client','build','room.ejs'));
+  })
+}
 
 
 io.on('connection',socket=>{
