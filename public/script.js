@@ -31,7 +31,7 @@ navigator.mediaDevices
     socket.on("user-connected", (userId) => {
       console.log("new user connected", userId);
       connectToNewUser(userId, stream);
-    });
+    })
   })
   .catch((error) => {
     console.log("Error: ", error);
