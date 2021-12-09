@@ -9,7 +9,6 @@ const peerServer = ExpressPeerServer(server, {
   debug: true,
    allow_discovery: true,
 });
-
 app.use('/peerjs',peerServer);
 app.use(express.static('public'));
 
